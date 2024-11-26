@@ -1,0 +1,30 @@
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(30px, 30px); }
+}
+
+@keyframes float-particle {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(10px); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes border-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes hologram-sweep {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
+
+@keyframes data-pulse {
+  0%, 100% { opacity: 0.3; width: 30%; }
+  50% { opacity: 1; width: 100%; }
+}
+

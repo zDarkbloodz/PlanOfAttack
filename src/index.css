@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  
+  .cyber-text {
+    @apply text-red-100;
+    text-shadow: 0 0 10px rgba(0, 255, 242, 0.5),
+                 0 0 20px rgba(0, 255, 242, 0.3),
+                 0 0 30px rgba(0, 255, 242, 0.1);
+  }
+
+  .cyber-box {
+    @apply relative border border-cyan-500/30 bg-black/50 backdrop-blur-sm
+           overflow-hidden transition-all duration-300 hover:border-cyan-400/50
+           rounded-lg;
+  }
+
+  .cyber-box::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10
+           rounded-lg opacity-0 transition-opacity duration-300;
+  }
+
+  .cyber-box:hover::before {
+    @apply opacity-100;
+  }
+
+  .cyber-inset {
+    @apply relative border border-cyan-800/30 bg-black/70
+           shadow-inner shadow-cyan-900/20 rounded-lg;
+  }
+}
+
+/* Custom animations */
+@keyframes grid {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(30px, 30px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(10px); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes hologram-sweep {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
+
+/* Custom effects */
+.hex-grid {
+  background-image: linear-gradient(90deg, rgba(0,255,242,0.1) 1px, transparent 1px),
+                    linear-gradient(rgba(0,255,242,0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: grid 20s linear infinite;
+  opacity: 0.3;
+}
+
+.cyber-particle {
+  @apply absolute w-2 h-2 bg-cyan-500/30 rounded-full;
+  filter: blur(1px);
+  animation: float 5s ease-in-out infinite;
+}
+
+.cyber-text {
+  
+}
+
+.scanline {
+  @apply absolute w-full h-24;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 255, 242, 0.05),
+    transparent
+  );
+  animation: scanline 8s linear infinite;
+}
+
+.hologram {
+  @apply relative overflow-hidden;
+}
+
+.hologram::before {
+  content: '';
+  @apply absolute top-0 left-[-75%] w-1/2 h-full;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 255, 242, 0.3),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: hologram-sweep 6s ease-in-out infinite;
+}
+
+/* Add to your index.css */
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .translate-z-30 {
+    transform: translateZ(30px);
+  }
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateZ(0) translateY(0) translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateZ(100px) translateY(-30px) translateX(20px) rotate(90deg);
+  }
+  50% {
+    transform: translateZ(50px) translateY(-50px) translateX(-20px) rotate(180deg);
+  }
+  75% {
+    transform: translateZ(150px) translateY(-20px) translateX(30px) rotate(270deg);
+  }
+}
+
+@keyframes lightning {
+  0%, 100% { opacity: 0; }
+  48%, 52% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes lightning-branch {
+  0%, 100% { opacity: 0; width: 0; }
+  48%, 52% { opacity: 0; width: 0; }
+  50% { opacity: 0.8; width: 30px; }
+}
+
+.cyber-particle {
+  @apply absolute;
+  animation: particle-float 20s ease-in-out infinite;
+  filter: blur(1px);
+}
+
+.lightning-bolt {
+  @apply absolute;
+  animation: random-move 10s ease-in-out infinite;
+}
+
+.animate-lightning {
+  animation: lightning 4s ease-in-out infinite;
+}
+
+.animate-lightning-branch {
+  animation: lightning-branch 4s ease-in-out infinite;
+}
+
+@keyframes random-move {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(100px) rotate(45deg);
+  }
+}
+
+/* Enhanced hex grid animation */
+.hex-grid {
+  background-image: 
+    linear-gradient(90deg, rgba(0,255,242,0.1) 1px, transparent 1px),
+    linear-gradient(rgba(0,255,242,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,242,0.05) 2px, transparent 2px),
+    linear-gradient(rgba(0,255,242,0.05) 2px, transparent 2px);
+  background-size: 30px 30px, 30px 30px, 90px 90px, 90px 90px;
+  animation: grid-move 20s linear infinite;
+}
